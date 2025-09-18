@@ -27,7 +27,6 @@ $totalRequirements = $requirementsQuery->fetch_assoc()['total'];
     <style>
         .container {
             max-width: 1000px;
-            margin: 30px auto;
         }
 
         .grid {
