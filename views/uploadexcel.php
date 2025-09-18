@@ -71,7 +71,6 @@
       <input type="file" name="excel_file" accept=".xls,.xlsx" required>
       <button id="btn" type="submit">Upload</button>
     </form>
-    <div id="response"></div>
   </div>
 
   <?php include "./footer.php" ?>
@@ -79,9 +78,23 @@
   <script>
     document.getElementById("uploadForm").addEventListener("submit", function(e) {
       e.preventDefault(); // prevent page navigation
+      let fileInput = this.excel_file;
+
+      if (fileInput.files.length === 0) {
+        alert("Please select an Excel file to upload.");
+        e.preventDefault();
+        return;
+      }
+
+      let allowedExtensions = /(\.xls|\.xlsx)$/i;
+      if (!allowedExtensions.exec(fileInput.value)) {
+        alert("Invalid file type. Only .xls and .xlsx files are allowed.");
+        fileInput.focus();
+        e.preventDefault();
+        return;
+      }
 
       let formData = new FormData(this);
-
       fetch("../controller/ProjectUploadExcel.php", {
           method: "POST",
           body: formData

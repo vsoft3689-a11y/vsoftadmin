@@ -124,9 +124,9 @@
         <form id="configForm">
             <input type="hidden" name="action" value="create">
             <label>Config Key:</label>
-            <input type="text" name="config_key" required>
+            <input type="text" name="config_key">
             <label>Config Value:</label>
-            <textarea name="config_value" required></textarea>
+            <textarea name="config_value"></textarea>
             <button id="btn" type="submit">Add Config</button>
         </form>
     </div>
@@ -206,6 +206,27 @@
 
     document.getElementById("configForm").addEventListener("submit", async function(e) {
         e.preventDefault();
+
+        let form = this.closest("form");
+        let key = form.config_key.value.trim();
+        let value = form.config_value.value.trim();
+
+        // Validate Config Key (min 3 characters)
+        if (key.length < 3) {
+            alert("Config Key must be at least 3 characters long.");
+            form.config_key.focus();
+            e.preventDefault();
+            return;
+        }
+
+        // Validate Config Value (min 3 characters)
+        if (value.length < 3) {
+            alert("Config Value must be at least 3 characters long.");
+            form.config_value.focus();
+            e.preventDefault();
+            return;
+        }
+
         let formData = new FormData(this);
         let res = await fetch(apiUrl, {
             method: "POST",

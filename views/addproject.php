@@ -90,7 +90,7 @@
 
 <body>
   <?php include "./adminnavbar.php" ?>
-  
+
   <div class="main">
     <section>
       <h2 id="createHeading">Add Project</h2>
@@ -98,14 +98,14 @@
         <div>
           <input type="hidden" name="action" value="create" />
 
-          <input type="text" name="degree" placeholder="Degree" required />
-          <input type="text" name="branch" placeholder="Branch" required />
+          <input type="text" name="degree" placeholder="Degree"/>
+          <input type="text" name="branch" placeholder="Branch"/>
           <select name="type">
             <option value="mini">Mini</option>
             <option value="major">Major</option>
           </select>
-          <input type="text" name="domain" placeholder="Domain" required />
-          <input type="text" name="title" placeholder="Title" required />
+          <input type="text" name="domain" placeholder="Domain"/>
+          <input type="text" name="title" placeholder="Title"/>
           <textarea name="description" placeholder="Description"></textarea>
         </div>
 
@@ -129,6 +129,54 @@
     // Create Project
     document.getElementById("createForm").addEventListener("submit", async function(e) {
       e.preventDefault();
+      let form = e.target;
+
+      let degree = form.degree.value.trim();
+      let branch = form.branch.value.trim();
+      let type = form.type.value;
+      let domain = form.domain.value.trim();
+      let title = form.title.value.trim();
+
+      // Validate Degree
+      if (degree.length < 2) {
+        alert("Degree must be at least 2 characters long.");
+        form.degree.focus();
+        e.preventDefault();
+        return;
+      }
+
+      // Validate Branch
+      if (branch.length < 2) {
+        alert("Branch must be at least 2 characters long.");
+        form.branch.focus();
+        e.preventDefault();
+        return;
+      }
+
+      // Validate Type
+      if (type !== "mini" && type !== "major") {
+        alert("Please select a valid type.");
+        form.type.focus();
+        e.preventDefault();
+        return;
+      }
+
+      // Validate Domain
+      if (domain.length < 3) {
+        alert("Domain must be at least 3 characters long.");
+        form.domain.focus();
+        e.preventDefault();
+        return;
+      }
+
+      // Validate Title
+      if (title.length < 3) {
+        alert("Title must be at least 3 characters long.");
+        form.title.focus();
+        e.preventDefault();
+        return;
+      }
+
       try {
         let formData = new FormData(this);
         let res = await fetch(apiUrl, {

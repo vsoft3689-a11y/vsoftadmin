@@ -118,20 +118,21 @@
         <form id="serviceForm">
             <input type="hidden" name="id" id="service_id">
             <label>Service Type</label>
-            <select name="service_type" id="service_type" required>
+            <select name="service_type" id="service_type">
+                <option value="">-- Select --</option>
                 <option value="project">Project</option>
                 <option value="internship">Internship</option>
                 <option value="training">Training</option>
             </select>
 
             <label>Package Name</label>
-            <input type="text" name="package_name" id="package_name" required>
+            <input type="text" name="package_name" id="package_name">
 
             <label>Description</label>
             <textarea name="description" id="description"></textarea>
 
             <label>Original Price</label>
-            <input type="number" step="0.01" name="original_price" id="original_price" required>
+            <input type="number" step="0.01" name="original_price" id="original_price">
 
             <label>Discounted Price</label>
             <input type="number" step="0.01" name="discounted_price" id="discounted_price">
@@ -200,6 +201,35 @@
 
         document.getElementById("serviceForm").addEventListener("submit", async e => {
             e.preventDefault();
+
+            let serviceType = document.getElementById("service_type");
+            let packageName = document.getElementById("package_name");
+            let originalPrice = document.getElementById("original_price");
+
+            // Validate Service Type
+            if (serviceType.value === "") {
+                alert("Please select a service type.");
+                serviceType.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Package Name (min 3 chars)
+            if (packageName.value.trim().length < 3) {
+                alert("Package name must be at least 3 characters long.");
+                packageName.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Original Price (must be positive)
+            if (originalPrice.value === "" || parseFloat(originalPrice.value) <= 0) {
+                alert("Original price must be a positive number.");
+                originalPrice.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(e.target);
             formData.append("action", document.getElementById("service_id").value ? "update" : "create");
 

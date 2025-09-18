@@ -123,32 +123,32 @@
                         data.forEach(inq => {
                             const tr = document.createElement("tr");
                             tr.innerHTML = `
-                        <td>${inq.name}</td>
-                        <td>${inq.email}</td>
-                        <td>${inq.phone || '-'}</td>
-                        <td>${inq.subject}</td>
-                        <td>${inq.type}</td>
-                        <td>${inq.message}</td>
-                        <td>
-                            <span class="badge ${inq.status === 'resolved' ? 'badge-success' : 'badge-warning'}">
-                                ${inq.status}
-                            </span>
-                        </td>
-                        <td>
-                            <form onsubmit="return updateStatus(event, ${inq.id})">
-                                <select name="status" class="form-select form-select-sm mb-1">
-                                    <option value="pending" ${inq.status === 'pending' ? 'selected' : ''}>Pending</option>
-                                    <option value="resolved" ${inq.status === 'resolved' ? 'selected' : ''}>Resolved</option>
-                                </select>
-                                <button id="btn" type="submit" class="btn btn-sm btn-success">Update</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form onsubmit="return deleteInquiry(event, ${inq.id})">
-                                <button id="btn" type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    `;
+                                            <td>${inq.name}</td>
+                                            <td>${inq.email}</td>
+                                            <td>${inq.phone || '-'}</td>
+                                            <td>${inq.subject}</td>
+                                            <td>${inq.type}</td>
+                                            <td>${inq.message}</td>
+                                            <td>
+                                                <span class="badge ${inq.status === 'resolved' ? 'badge-success' : 'badge-warning'}">
+                                                                    ${inq.status}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <form onsubmit="return updateStatus(event, ${inq.id})">
+                                                    <select name="status" class="form-select form-select-sm mb-1">
+                                                        <option value="pending" ${inq.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                                        <option value="resolved" ${inq.status === 'resolved' ? 'selected' : ''}>Resolved</option>
+                                                    </select>
+                                                    <button id="btn" type="submit" class="btn btn-sm btn-success">Update</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form onsubmit="return deleteInquiry(event, ${inq.id})">
+                                                    <button id="btn" type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        `;
                             tbody.appendChild(tr);
                         });
                     });

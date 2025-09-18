@@ -107,7 +107,7 @@ $file_path_abstract = $_GET['file_path_abstract'];
 
 <body>
     <?php include "adminnavbar.php" ?>
-    
+
     <div class="main">
         <section>
             <!-- UPDATE FORM -->
@@ -116,14 +116,14 @@ $file_path_abstract = $_GET['file_path_abstract'];
                 <div>
                     <input type="hidden" name="action" value="update" />
                     <input type="hidden" name="id" id="update_id" value="<?php echo htmlspecialchars($id); ?>" />
-                    <input type="text" name="degree" id="update_degree" value="<?php echo htmlspecialchars($degree); ?>" placeholder="Degree" required />
-                    <input type="text" name="branch" id="update_branch" value="<?php echo htmlspecialchars($branch); ?>" placeholder="Branch" required />
+                    <input type="text" name="degree" id="update_degree" value="<?php echo htmlspecialchars($degree); ?>" placeholder="Degree" />
+                    <input type="text" name="branch" id="update_branch" value="<?php echo htmlspecialchars($branch); ?>" placeholder="Branch" />
                     <select name="type" id="update_type">
                         <option value="mini">Mini</option>
                         <option value="major">Major</option>
                     </select>
-                    <input type="text" name="domain" id="update_domain" value="<?php echo htmlspecialchars($domain); ?>" placeholder="Domain" required />
-                    <input type="text" name="title" id="update_title" value="<?php echo htmlspecialchars($title); ?>" placeholder="Title" required />
+                    <input type="text" name="domain" id="update_domain" value="<?php echo htmlspecialchars($domain); ?>" placeholder="Domain" />
+                    <input type="text" name="title" id="update_title" value="<?php echo htmlspecialchars($title); ?>" placeholder="Title" />
                 </div>
 
                 <div>
@@ -148,6 +148,55 @@ $file_path_abstract = $_GET['file_path_abstract'];
         // Update student
         document.getElementById("updateForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+
+            let form = e.target;
+
+            let degree = form.degree.value.trim();
+            let branch = form.branch.value.trim();
+            let type = form.type.value;
+            let domain = form.domain.value.trim();
+            let title = form.title.value.trim();
+
+            // Validate Degree
+            if (degree.length < 2) {
+                alert("Degree must be at least 2 characters long.");
+                form.degree.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Branch
+            if (branch.length < 2) {
+                alert("Branch must be at least 2 characters long.");
+                form.branch.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Type
+            if (type !== "mini" && type !== "major") {
+                alert("Please select a valid type.");
+                form.type.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Domain
+            if (domain.length < 3) {
+                alert("Domain must be at least 3 characters long.");
+                form.domain.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Title
+            if (title.length < 3) {
+                alert("Title must be at least 3 characters long.");
+                form.title.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(this);
             try {
                 let res = await fetch(apiUrl + "?action=update", {

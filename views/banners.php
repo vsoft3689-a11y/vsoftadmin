@@ -109,15 +109,15 @@
 
 <body>
     <?php include "./adminnavbar.php" ?>
-    
+
     <div class="main">
         <h2 id="createHeading">Add New Banner</h2>
         <form id="createForm" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="create">
             <label>Banner Image:</label>
-            <input type="file" name="image" required><br>
+            <input type="file" name="image" id="image"><br>
             <label>Tagline:</label>
-            <input type="text" name="tagline"><br>
+            <input type="text" name="tagline" id="tagline"><br>
             <label>Sub Text:</label>
             <textarea name="sub_text"></textarea><br>
             <label>CTA Button Text:</label>
@@ -125,7 +125,7 @@
             <label>CTA Button Link:</label>
             <input type="url" name="cta_button_link"><br>
             <label>Display Order:</label>
-            <input type="number" name="display_order" required><br>
+            <input type="number" name="display_order" id="display_order"><br>
             <button id="btn" type="submit">Add Banner</button>
         </form>
     </div>
@@ -189,8 +189,8 @@
                                     <td>${b.is_active == 1 ? 'Active' : 'Inactive'}</td>
                                     <td>${b.display_order}</td>
                                     <td>
-                                        <button id="btn" onclick="deleteBanner(${b.id})">Delete</button>
                                         <button id="btn" onclick="toggleStatus(${b.id}, ${b.is_active})">${b.is_active == 1 ? 'Deactivate' : 'Activate'}</button>
+                                        <button id="btn" onclick="deleteBanner(${b.id})">Delete</button>
                                     </td>
                                 `;
                     tbody.appendChild(tr);
@@ -210,6 +210,41 @@
         // Create Banner slides
         document.getElementById("createForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+
+            let image = document.getElementById("image");
+            let tagline = document.getElementById("tagline");
+            let displayOrder = document.getElementById("display_order");
+
+            // Validate Image (only jpg/png/jpeg allowed)
+            if (image.files.length === 0) {
+                alert("Please select a banner image.");
+                e.preventDefault();
+                return;
+            } else {
+                let allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                if (!allowedExtensions.exec(image.value)) {
+                    alert("Invalid image format. Only JPG, JPEG, PNG allowed.");
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            // Validate Tagline (not empty, min 3 chars)
+            if (tagline.value.trim().length < 3) {
+                alert("Tagline must be at least 3 characters long.");
+                tagline.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Display Order (positive integer only)
+            if (displayOrder.value === "" || parseInt(displayOrder.value) <= 0) {
+                alert("Display Order must be a positive number.");
+                displayOrder.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(this);
             let res = await fetch(apiUrl, {
                 method: "POST",

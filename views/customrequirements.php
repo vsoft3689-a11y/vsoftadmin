@@ -83,7 +83,7 @@
 
 <body>
     <?php include "./adminnavbar.php" ?>
-    
+
     <div class="main">
         <h2 id="customHeading">Custom Requirements</h2>
     </div>
@@ -119,22 +119,22 @@
             data.forEach(p => {
                 let tr = document.createElement("tr");
                 tr.innerHTML = `
-          <td>${p.id}</td>
-          <td>${p.user_id}</td>
-          <td>${p.title}</td>
-          <td>${p.technologies || ""}</td>
-          <td>
-            <select onchange="updateStatus(${p.id}, this.value)">
-              <option value="pending" ${p.status === "pending" ? "selected" : ""}>Pending</option>
-              <option value="approved" ${p.status === "approved" ? "selected" : ""}>Approved</option>
-              <option value="done" ${p.status === "done" ? "selected" : ""}>Done</option>
-            </select>
-          </td>
-          <td>${p.document_path ? `<a href="../${p.document_path}" target="_blank">Download</a>` : ""}</td>
-          <td>
-            <button id=btn" onclick="deleteProject(${p.id})">Delete</button>
-          </td>
-        `;
+                                <td>${p.id}</td>
+                                <td>${p.user_id}</td>
+                                <td>${p.title}</td>
+                                <td>${p.technologies || ""}</td>
+                                <td>
+                                    <select onchange="updateStatus(${p.id}, this.value)">
+                                        <option value="pending" ${p.status === "pending" ? "selected" : ""}>Pending</option>
+                                        <option value="approved" ${p.status === "approved" ? "selected" : ""}>Approved</option>
+                                        <option value="done" ${p.status === "done" ? "selected" : ""}>Done</option>
+                                    </select>
+                                </td>
+                                <td>${p.document_path ? `<a href="../${p.document_path}" target="_blank">Download</a>` : ""}</td>
+                                <td>
+                                    <button id=btn" onclick="deleteProject(${p.id})">Delete</button>
+                                </td>
+                            `;
                 tbody.appendChild(tr);
             });
         }

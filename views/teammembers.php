@@ -120,10 +120,10 @@
             <input type="hidden" name="action" value="create">
 
             <label>Name:</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name">
 
             <label>Designation:</label>
-            <input type="text" name="designation" required>
+            <input type="text" name="designation">
 
             <label>Bio:</label>
             <textarea name="bio"></textarea>
@@ -141,7 +141,7 @@
             <input type="url" name="social_linkedin">
 
             <label>Display Order:</label>
-            <input type="number" name="display_order" required>
+            <input type="number" name="display_order">
 
             <button id="btn" type="submit">Add Member</button>
         </form>
@@ -153,10 +153,10 @@
             <input type="hidden" name="id" id="update_id">
 
             <label>Name:</label>
-            <input type="text" name="name" id="update_name" required>
+            <input type="text" name="name" id="update_name">
 
             <label>Designation:</label>
-            <input type="text" name="designation" id="update_designation" required>
+            <input type="text" name="designation" id="update_designation">
 
             <label>Bio:</label>
             <textarea name="bio" id="update_bio"></textarea>
@@ -174,7 +174,7 @@
             <input type="url" name="social_linkedin" id="update_linkedin">
 
             <label>Display Order:</label>
-            <input type="number" name="display_order" id="update_order" required>
+            <input type="number" name="display_order" id="update_order">
 
             <button type="submit">Update Member</button>
             <button id="btn" type="button" onclick="cancelUpdate()">Cancel</button>
@@ -245,8 +245,8 @@
                                     <td>${m.display_order}</td>
                                     <td>
                                         <button id="btn" onclick="editMember(${m.id}, '${m.name}', '${m.designation}', \`${m.bio || ''}\`, '${m.social_facebook || ''}', '${m.social_twitter || ''}', '${m.social_linkedin || ''}', ${m.display_order})">Edit</button>
-                                        <button id="btn" onclick="deleteMember(${m.id})">Delete</button>
                                         <button id="btn" onclick="toggleStatus(${m.id}, ${m.is_active})">${m.is_active == 1 ? 'Deactivate' : 'Activate'}</button>
+                                        <button id="btn" onclick="deleteMember(${m.id})">Delete</button>
                                     </td>
                                  `;
                     tbody.appendChild(tr);
@@ -266,6 +266,36 @@
         // Create team member
         document.getElementById("createForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+            let form = e.target;
+
+            let name = form.name.value.trim();
+            let designation = form.designation.value.trim();
+            let displayOrder = form.display_order.value.trim();
+
+            // Validate Name (min 3 characters)
+            if (name.length < 3) {
+                alert("Name must be at least 3 characters long.");
+                form.name.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Designation (min 2 characters)
+            if (designation.length < 2) {
+                alert("Designation must be at least 2 characters long.");
+                form.designation.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Display Order (positive number)
+            if (displayOrder === "" || parseInt(displayOrder) <= 0) {
+                alert("Display Order must be a positive number.");
+                form.display_order.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(this);
             let res = await fetch(apiUrl, {
                 method: "POST",
@@ -280,6 +310,37 @@
         // Update team member
         document.getElementById("updateForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+
+            let form = e.target;
+
+            let name = form.name.value.trim();
+            let designation = form.designation.value.trim();
+            let displayOrder = form.display_order.value.trim();
+
+            // Validate Name (min 3 characters)
+            if (name.length < 3) {
+                alert("Name must be at least 3 characters long.");
+                form.name.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Designation (min 2 characters)
+            if (designation.length < 2) {
+                alert("Designation must be at least 2 characters long.");
+                form.designation.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Display Order (positive number)
+            if (displayOrder === "" || parseInt(displayOrder) <= 0) {
+                alert("Display Order must be a positive number.");
+                form.display_order.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(this);
             let res = await fetch(apiUrl, {
                 method: "POST",

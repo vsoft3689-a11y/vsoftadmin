@@ -64,7 +64,7 @@
 
 <body>
     <?php include "adminnavbar.php" ?>
-    
+
     <div class="load-projects">
         <h2 id="projectHeading">Projects</h2>
         <div id="projects"></div>
@@ -119,24 +119,24 @@
             data.forEach((p) => {
                 let tr = document.createElement("tr");
                 tr.innerHTML = `
-          <td>${p.id}</td>
-          <td>${p.title}</td>
-          <td>${p.type}</td>
-          <td>${p.domain}</td>
-          <td>${p.degree}</td>
-          <td>${p.branch}</td>
-          <td><a href="${p.youtube_url}" target="_blank">Watch Video</a></td>
-          <td><a href="${p.file_path_abstract}" target="_blank">Downlaod Abstract</a></td>
-          <td><a href="${p.file_path_basepaper}" target="_blank">Download Basepaper</a></td>
-          <td>
-          <button id="btn" onclick="window.location='./updateproject.php?id=${p.id}&degree=${p.degree}&branch=${p.branch}&type=${p.type}&domain=${p.domain}&title=${p.title}&description=${p.description}&technologies=${p.technologies}&price=${p.price}&youtube_url=${p.youtube_url}&file_path_abstract=${p.file_path_abstract}&file_path_basepaper=${p.file_path_basepaper}'">
-          Edit</button>
-          <button id="btn" onclick="deleteProject(${p.id})">Delete</button>
-          </td>
-          `;
+                                <td>${p.id}</td>
+                                <td>${p.title}</td>
+                                <td>${p.type}</td>
+                                <td>${p.domain}</td>
+                                <td>${p.degree}</td>
+                                <td>${p.branch}</td>
+                                <td><a href="${p.youtube_url}" target="_blank">Watch Video</a></td>
+                                <td><a href="${p.file_path_abstract}" target="_blank">Downlaod Abstract</a></td>
+                                <td><a href="${p.file_path_basepaper}" target="_blank">Download Basepaper</a></td>
+                                <td>
+                                    <button id="btn" onclick="window.location='./updateproject.php?id=${p.id}&degree=${p.degree}&branch=${p.branch}&type=${p.type}&domain=${p.domain}&title=${p.title}&description=${p.description}&technologies=${p.technologies}&price=${p.price}&youtube_url=${p.youtube_url}&file_path_abstract=${p.file_path_abstract}&file_path_basepaper=${p.file_path_basepaper}'">
+                                    Edit</button>
+                                    <button id="btn" onclick="deleteProject(${p.id})">Delete</button>
+                                </td>
+                            `;
                 tbody.appendChild(tr);
-                table.appendChild(tbody);
             });
+            table.appendChild(tbody);
             document.getElementById("projects").appendChild(table);
         } else {
             let para = document.createElement("p");

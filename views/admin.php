@@ -37,14 +37,14 @@ $totalRequirements = $requirementsQuery->fetch_assoc()['total'];
         .card {
             flex: 1;
             padding: 20px;
-           background: #79a1cbff!important;
+            background: #06BBCC !important;
             border-radius: 12px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .small {
-            font-size: 20px!important;
+            font-size: 20px !important;
             font-weight: bold;
             color: #fef9f9ff;
             margin-bottom: 8px;

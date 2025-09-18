@@ -109,17 +109,17 @@
         <form id="reviewForm" enctype="multipart/form-data">
             <input type="hidden" name="action" value="create">
             <label>Name:</label>
-            <input type="text" name="customer_name" required>
+            <input type="text" name="customer_name">
             <label>Designation:</label>
             <input type="text" name="designation">
             <label>Rating (1-5):</label>
-            <input type="number" name="rating" min="1" max="5" required>
+            <input type="number" name="rating" min="1" max="5">
             <label>Review:</label>
             <textarea name="review_text" required></textarea>
             <label>Photo:</label>
             <input type="file" name="customer_photo" accept="image/*">
             <label>Display Order:</label>
-            <input type="number" name="display_order" required>
+            <input type="number" name="display_order">
             <button id="btn" type="submit">Add Review</button>
         </form>
     </div>
@@ -176,10 +176,8 @@
                         </td>
                         <td>${r.display_order}</td>
                         <td>
-                            <button id="btn" onclick="deleteReview(${r.id})">Delete</button>
-                            <button id="btn" onclick="toggleApproval(${r.id}, ${r.is_approved})">
-                                                ${r.is_approved == 1 ? "UnApprove" : "Approve"}
-                            </button>
+                        <button id="btn" onclick="toggleApproval(${r.id}, ${r.is_approved})">${r.is_approved == 1 ? "UnApprove" : "Approve"}</button>
+                        <button id="btn" onclick="deleteReview(${r.id})">Delete</button>
                         </td>
                         </tr>`;
             });
@@ -188,6 +186,36 @@
 
         document.getElementById("reviewForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+            let form = e.target;
+
+            let customerName = form.customer_name.value.trim();
+            let reviewText = form.review_text.value.trim();
+            let displayOrder = form.display_order.value.trim();
+
+            // Validate Customer Name (min 3 characters)
+            if (customerName.length < 3) {
+                alert("Customer Name must be at least 3 characters long.");
+                form.customer_name.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Review Text (min 5 characters)
+            if (reviewText.length < 5) {
+                alert("Review must be at least 5 characters long.");
+                form.review_text.focus();
+                e.preventDefault();
+                return;
+            }
+
+            // Validate Display Order (positive number)
+            if (displayOrder === "" || parseInt(displayOrder) <= 0) {
+                alert("Display Order must be a positive number.");
+                form.display_order.focus();
+                e.preventDefault();
+                return;
+            }
+
             let formData = new FormData(this);
             let res = await fetch(apiUrl, {
                 method: "POST",
