@@ -1,5 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+?>
 
+<?php
 $id = $_GET['id'];
 $degree = $_GET['degree'];
 $branch = $_GET['branch'];
@@ -20,7 +27,7 @@ $file_path_abstract = $_GET['file_path_abstract'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Project</title>
     <style>
         .main {
             width: 100%;

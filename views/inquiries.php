@@ -1,6 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>User Inquiries</title>
@@ -78,6 +85,7 @@
 
         .load-inquiry {
             margin: 10px 10px;
+            margin-bottom: 100px;
         }
     </style>
 </head>

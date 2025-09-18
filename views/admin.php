@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<?php
 include "../config/database.php"; // your DB connection file
 
 $db = new Database();
@@ -21,12 +29,18 @@ $totalRequirements = $requirementsQuery->fetch_assoc()['total'];
 
 <head>
     <meta charset="utf-8">
-    <title>VSoftSolutions Admin Panel</title>
+    <title>Admin Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <style>
-        .container {
-            max-width: 1000px;
+        .main {
+            max-width: 100vw;
+            padding-top: 10px;
+            padding-bottom: 100px;
+        }
+
+        #dashHeading{
+            margin-bottom: 20px;
         }
 
         .grid {
@@ -38,7 +52,7 @@ $totalRequirements = $requirementsQuery->fetch_assoc()['total'];
             flex: 1;
             padding: 20px;
             background: #06BBCC !important;
-            border-radius: 12px;
+            border-radius: 12px!important;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -63,9 +77,10 @@ $totalRequirements = $requirementsQuery->fetch_assoc()['total'];
 
     <?php include "./adminnavbar.php" ?>
 
-    <div class='container mt-5'>
+    <div class='container mt-5 main'>
+        <h2 id="dashHeading">Dashboard</h2>
         <div class='grid'>
-            <div class='card'>
+            <div class='card card-box'>
                 <div class='small'>Total Projects</div>
                 <div style='font-size:28px;font-weight:700;color:aliceblue'><?= $totalProjects ?></div>
             </div>

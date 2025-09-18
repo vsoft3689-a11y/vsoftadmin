@@ -44,6 +44,15 @@ class UserController
                 echo json_encode($this->userModel->read());
                 break;
 
+
+            case "getUser":
+                $data = [
+                    "email" => $_POST['email'] ?? '',
+                    "password" => $_POST['password'] ?? ''
+                ];
+                echo json_encode($this->userModel->getByEmailAndPassword($data));
+                break;
+
             case "update":
                 $data = [
                     "id"      => $_POST['id'],

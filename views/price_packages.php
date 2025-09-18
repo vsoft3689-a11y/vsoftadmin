@@ -1,9 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Manage Services</title>
+    <title>Price Services</title>
     <style>
         .main {
             width: 100%;
@@ -153,6 +160,7 @@
     </div>
 
     <section class="load-price">
+        <h2>Package Prices</h2>
         <table>
             <thead>
                 <tr>
