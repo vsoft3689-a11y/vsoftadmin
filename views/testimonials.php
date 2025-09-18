@@ -45,7 +45,7 @@
         #btn {
             width: auto;
             padding: 10px;
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             font-weight: bold;
             cursor: pointer;
@@ -55,7 +55,7 @@
         }
 
         #btn:hover {
-            background: #0056b3;
+            background: #06BBCC;
         }
 
         #btn[type="submit"] {
@@ -80,7 +80,7 @@
         }
 
         th {
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
         }
 
@@ -93,12 +93,6 @@
             margin-right: 6px;
             padding: 6px 12px;
             font-size: 13px;
-        }
-
-        img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
         }
 
         .load-testimonals {
@@ -172,7 +166,7 @@
                 rows += `
                         <tr>
                         <td>${r.id}</td>
-                        <td>${r.customer_photo_path ? `<img src="../${r.customer_photo_path}">` : ""}</td>
+                        <td>${r.customer_photo_path ? `<img src="../${r.customer_photo_path}" width=120>` : ""}</td>
                         <td>${r.customer_name}</td>
                         <td>${r.designation || ""}</td>
                         <td>${getStars(r.rating)}</td>

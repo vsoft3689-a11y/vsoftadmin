@@ -20,7 +20,7 @@
 
         #btn {
             width: auto;
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             font-weight: bold;
             padding: 10px;
@@ -31,7 +31,7 @@
         }
 
         #btn:hover {
-            background: #0056b3;
+            background: #06BBCC;
         }
 
         #btn[type="button"] {
@@ -60,7 +60,7 @@
         }
 
         th {
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
         }
 

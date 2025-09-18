@@ -65,7 +65,7 @@
     }
 
     #createForm div button {
-      background: #007bff;
+      background: #06BBCC;
       color: #fff;
       border-radius: 5px;
       font-weight: bold;
@@ -75,73 +75,15 @@
     }
 
     #createForm div button:hover {
-      background: #0056b3;
+      background: #06BBCC;
     }
 
     #createForm div button[type="button"] {
-      background: #6c757d;
+      background: #06BBCC;
     }
 
     #createForm div button[type="button"]:hover {
-      background: #5a6268;
-    }
-
-    hr {
-      margin: 30px 0;
-    }
-
-    #projects a {
-      margin: 0 8px;
-      text-decoration: none;
-      color: #28a745;
-      font-weight: bold;
-    }
-
-    #projects a:hover {
-      text-decoration: underline;
-    }
-
-    #projects button {
-      margin: 5px;
-      padding: 6px 12px;
-      font-size: 13px;
-    }
-
-    .load-projects {
-      margin: 10px 10px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      margin-top: 20px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    th,
-    td {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-
-    th {
-      background: #007bff;
-      color: #fff;
-    }
-
-    tr:hover {
-      background: #f1f1f1;
-    }
-
-    .actions button {
-      width: auto;
-      margin-right: 6px;
-      padding: 6px 12px;
-      font-size: 13px;
+      background: #06BBCC;
     }
   </style>
 </head>
@@ -151,7 +93,7 @@
   
   <div class="main">
     <section>
-      <h2 id="createHeading">Create Project</h2>
+      <h2 id="createHeading">Add Project</h2>
       <form id="createForm" enctype="multipart/form-data">
         <div>
           <input type="hidden" name="action" value="create" />
@@ -173,7 +115,7 @@
           <input type="url" name="youtube_url" placeholder="YouTube URL" />
           <input type="file" name="abstract" accept="application/pdf" />
           <input type="file" name="basepaper" accept="application/pdf" />
-          <button type="submit">Create</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     </section>

@@ -21,7 +21,7 @@
 
         #btn {
             width: auto;
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             font-weight: bold;
             padding: 10px;
@@ -32,15 +32,15 @@
         }
 
         #btn:hover {
-            background: #0056b3;
+            background: #06BBCC;
         }
 
         #btn[type="button"] {
-            background: #6c757d;
+            background: #06BBCC;
         }
 
         #btn[type="button"]:hover {
-            background: #5a6268;
+            background: #06BBCC;
         }
 
         table {
@@ -61,7 +61,7 @@
         }
 
         th {
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
         }
 

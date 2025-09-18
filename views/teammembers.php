@@ -49,7 +49,7 @@
 
         #btn {
             width: auto;
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             padding: 10px;
             font-weight: bold;
@@ -60,7 +60,7 @@
         }
 
         #btn:hover {
-            background: #0056b3;
+            background: #06BBCC;
         }
 
         #btn[type="submit"] {
@@ -93,7 +93,7 @@
         }
 
         th {
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             text-align: center;
         }

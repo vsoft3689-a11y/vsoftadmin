@@ -33,7 +33,7 @@
         }
 
         th {
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
         }
 
@@ -50,7 +50,7 @@
 
         #btn {
             width: auto;
-            background: #007bff;
+            background: #06BBCC;
             color: #fff;
             font-weight: bold;
             padding: 10px;

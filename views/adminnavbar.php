@@ -48,7 +48,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Projects</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="./createproject.php" class="dropdown-item">Add Projects</a>
+                        <a href="./addproject.php" class="dropdown-item">Add Projects</a>
                         <a href="./viewproject.php" class="dropdown-item">View Projects</a>
                         <a href="./uploadexcel.php" class="dropdown-item">Upload Projects</a>
                     </div>
@@ -66,6 +66,7 @@
                 <a href="./customrequirements.php" class="nav-item nav-link">Custom Requirements</a>
                 <a href="./inquiries.php" class="nav-item nav-link">Inquiries</a>
             </div>
+            <a href="./login.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->

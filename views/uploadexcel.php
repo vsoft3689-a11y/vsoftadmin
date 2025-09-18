@@ -36,7 +36,7 @@
 
     #btn {
       width: auto;
-      background: #007bff;
+      background: #06BBCC;
       color: #fff;
       padding: 10px;
       font-weight: bold;
