@@ -103,7 +103,7 @@
                                     <td>${s.year || "-"}</td>
                                     <td>${s.created_at}</td>
                                     <td>
-                                        ${s.status === "active" ? "Deactivate" : "Activate"}                                       
+                                        ${s.status === "active" ? "Active" : "Deactive"}                                       
                                         </td>
                                 `;
                     tbody.appendChild(tr);
