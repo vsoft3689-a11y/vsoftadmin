@@ -17,7 +17,7 @@ $projectsQuery = $conn->query("SELECT COUNT(*) as total FROM projects");
 $totalProjects = $projectsQuery->fetch_assoc()['total'];
 
 // Fetch total users
-$usersQuery = $conn->query("SELECT COUNT(*) as total FROM users");
+$usersQuery = $conn->query("SELECT COUNT(*) as total FROM users where name!='admin'");
 $totalUsers = $usersQuery->fetch_assoc()['total'];
 
 // Fetch new custom requirements (example: type='contact' and status='pending')

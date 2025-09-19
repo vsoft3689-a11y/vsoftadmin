@@ -8,6 +8,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>User Management</title>
@@ -89,7 +90,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
                 th6.innerHTML = "Branch";
                 th7.innerHTML = "Year";
                 th8.innerHTML = "Created At";
-                th9.innerHTML = "Status";
 
                 tr1.append(th1, th2, th3, th4, th5, th6, th7, th8, th9);
                 thead.appendChild(tr1);
@@ -100,21 +100,20 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
                 tbody.innerHTML = "";
 
                 data.forEach((s) => {
-                    let tr = document.createElement("tr");
-                    tr.innerHTML = `
-                                    <td>${s.id}</td>
-                                    <td>${s.name}</td>
-                                    <td>${s.email}</td>
-                                    <td>${s.phone || "-"}</td>
-                                    <td>${s.college || "-"}</td>
-                                    <td>${s.branch || "-"}</td>
-                                    <td>${s.year || "-"}</td>
-                                    <td>${s.created_at}</td>
-                                    <td>
-                                        ${s.status === "active" ? "Active" : "Deactive"}                                       
-                                        </td>
-                                `;
-                    tbody.appendChild(tr);
+                    if (s.name !== "admin") {
+                        let tr = document.createElement("tr");
+                        tr.innerHTML = `
+                        <td>${s.id}</td>
+                        <td>${s.name}</td>
+                        <td>${s.email}</td>
+                        <td>${s.phone || "-"}</td>
+                        <td>${s.college || "-"}</td>
+                        <td>${s.branch || "-"}</td>
+                        <td>${s.year || "-"}</td>
+                        <td>${s.created_at}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    }
                 });
                 table.appendChild(tbody);
                 document.getElementById("users").appendChild(table);

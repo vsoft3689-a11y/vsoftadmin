@@ -8,6 +8,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Price Services</title>
@@ -124,13 +125,15 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         <h2 id="serviceHeading">Manage Price Packages</h2>
         <form id="serviceForm">
             <input type="hidden" name="id" id="service_id">
-            <label>Service Type</label>
+            <!-- <label>Service Type</label>
             <select name="service_type" id="service_type">
                 <option value="">-- Select --</option>
                 <option value="project">Project</option>
                 <option value="internship">Internship</option>
                 <option value="training">Training</option>
-            </select>
+            </select> -->
+            <label>Service Type</label>
+            <input type="text" name="service_type" id="service_type">
 
             <label>Package Name</label>
             <input type="text" name="package_name" id="package_name">
